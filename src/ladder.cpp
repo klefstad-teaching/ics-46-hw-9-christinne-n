@@ -92,12 +92,12 @@ void print_word_ladder(const vector<string>& ladder)
     if(ladder.empty())
     {
         cout << "No word ladder found.\n";
-        return;//exit without doing anything
     }
     for(size_t i = 0; i < ladder.size(); ++i)
     {
-        cout << "Word ladder found: "<< ladder[i] << " \n";
+        cout << "Word ladder found: "<< ladder[i] << " ";
     }
+    cout << "\n";
 }
 #define my_assert(e) {cout << #e << ((e) ? " passed": " failed") << endl;}
 void verify_word_ladder()
