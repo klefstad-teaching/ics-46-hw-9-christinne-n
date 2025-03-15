@@ -8,17 +8,14 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
 {
     if(abs((int)str1.size() - (int)str2.size()) > d)
         return false;
+    
+    int i = 0, j = 0;
     int diff = 0;
-    size_t i=0, j=0;
-    while(i < str1.size() && j < str2.size())
+    while(i < str1.size() && j < str2.size()) 
     {
-        if(str1[i] != str2[j])
+        if(str1[i] != str2[j]) 
         {
             diff++;
-            if (diff > d)
-            {
-                return false;
-            }
             if (str1.size() > str2.size())
             {
                 i++;
@@ -99,8 +96,8 @@ void print_word_ladder(const vector<string>& ladder)
         {
         cout << ladder[i] << " ";
         }
+        cout<<"\n";
     }
-    cout << "\n";
 }
 #define my_assert(e) {cout << #e << ((e) ? " passed": " failed") << endl;}
 void verify_word_ladder()
