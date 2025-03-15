@@ -1,6 +1,5 @@
 #include "ladder.h"
 
-
 void error(string word1, string word2, string msg)
 {
     cerr << "Error: " << msg << " with "<< word1 << ", " << word2 << endl;
@@ -93,9 +92,13 @@ void print_word_ladder(const vector<string>& ladder)
     {
         cout << "No word ladder found.\n";
     }
-    for(size_t i = 0; i < ladder.size(); ++i)
+    else
     {
-        cout << "Word ladder found: "<< ladder[i] << " ";
+        cout << "Word ladder found: ";
+        for(size_t i = 0; i < ladder.size(); ++i)
+        {
+        cout << ladder[i] << " ";
+        }
     }
     cout << "\n";
 }
