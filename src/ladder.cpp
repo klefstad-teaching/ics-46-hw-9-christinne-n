@@ -8,7 +8,6 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
 {
     if(abs((int)str1.size() - (int)str2.size()) > d)
         return false;
-    
     int i = 0, j = 0;
     int diff = 0;
     while(i < (int)str1.size() && j < (int)str2.size()) 
