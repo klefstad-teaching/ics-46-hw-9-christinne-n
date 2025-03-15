@@ -25,11 +25,14 @@ vector<int> dijkstra_shortest_path(const Graph &G, int source, vector<int> &prev
             int v = edge.dst;
             int weight = edge.weight;
 
-            if(!visited[v] && distances[u] + weight < distances[v])
+            if(distances[u] != INF && (distances[u] + weight) < distances[v])
             {
-                distances[v] = distances[u] + weight;
-                previous[v] = u;
-                minHeap.push({distances[v], v});
+                if(distances[u] + weight >= 0)
+                {
+                    distances[v] = distances[u] + weight;
+                    previous[v] = u;
+                    minHeap.push({distances[v], v});
+                }
             }
         }
     }
@@ -53,7 +56,7 @@ void print_path(const vector<int>& v, int total)
 {
     if(v.empty())
     {
-        cout<<"No path \n";
+        cout<<"No path\n";
         return;
     }
     for(size_t i=0; i<v.size(); ++i)
@@ -62,7 +65,7 @@ void print_path(const vector<int>& v, int total)
             cout << " ";
         cout << v[i];
     }
-    cout<<"\n Total cost is " << total << "\n";
+    cout<<"\nTotal cost is " << total << "\n";
 }
 string get_arg(int argc, char *argv[], string def)
 {

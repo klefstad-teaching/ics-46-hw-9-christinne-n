@@ -10,21 +10,36 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
     if(abs((int)str1.size() - (int)str2.size()) > d)
         return false;
     int diff = 0;
-    for(size_t i = 0, j = 0; i < str1.size() && j < str2.size(); ++i, ++j)
+    size_t i=0, j=0;
+    while(i < str1.size() && j < str2.size())
     {
         if(str1[i] != str2[j])
         {
             diff++;
             if (diff > d)
+            {
                 return false;
+            }
             if (str1.size() > str2.size())
-                j++;
-            else if (str1.size() < str2.size())
+            {
                 i++;
+            }
+            else if (str1.size() < str2.size())
+            {
+                j++;
+            }
+            else
+            {
+                i++;
+                j++;
+            }
+        }
+        else {
+        i++;
+        j++;
         }
     }
-    diff += abs((int)str1.size() - (int)str2.size());
-    return diff <= d;
+    return (diff + abs((int)str1.size() - (int)str2.size())) <= d;
 }
 bool is_adjacent(const string& word1, const string& word2)
 {
@@ -34,6 +49,7 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
 {
     if(begin_word == end_word) //checks if they are the same
         return {begin_word};
+    
     queue<vector<string>> ladder_queue; //ladder_queue = vector queue of string
     ladder_queue.push({begin_word});
     set<string> visited; //visited = set of strings
@@ -45,18 +61,16 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
         ladder_queue.pop(); //ladder = ladder_queue.pop_front()
         string last_word = ladder.back(); //last element of ladder
 
-        for(const string & word : word_list) 
+        for(const string& word : word_list) 
         {
-            if(is_adjacent(last_word, word))
+            if(is_adjacent(last_word, word) && visited.find(word) == visited.end())
             {
-                if(visited.find(word) == visited.end())
-                {
-                    vector<string> new_ladder = ladder; //copy of ladder
-                    new_ladder.push_back(word);
-                    if(word == end_word)
-                        return new_ladder;
-                    ladder_queue.push(new_ladder);
-                }
+                visited.insert(word);
+                vector<string> new_ladder = ladder; //copy of ladder
+                new_ladder.push_back(word);
+                if(word == end_word)
+                    return new_ladder;
+                ladder_queue.push(new_ladder);
             }
         }
     }
