@@ -45,8 +45,6 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
 {
     if(begin_word == end_word) //checks if they are the same
         return {begin_word};
-    if(word_list.find(begin_word)==word_list.end())
-        return {};
     
     queue<vector<string>> ladder_queue; //ladder_queue = vector queue of string
     ladder_queue.push({begin_word});
