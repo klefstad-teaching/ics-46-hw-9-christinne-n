@@ -56,14 +56,14 @@ void print_path(const vector<int>& v, int total)
 {
     if(v.empty())
     {
-        cout<<"No path\nTotal cost is " << total << "\n";
+        cout<<"\nTotal cost is " << total << "\n";
         return;
     }
     for(size_t i=0; i<v.size(); ++i)
     {
         if (i>0) 
             cout << " ";
-        cout << v[i];
+        cout << v[i] << " ";
     }
     cout<<"\nTotal cost is " << total << "\n";
 }
