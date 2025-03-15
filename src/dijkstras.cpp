@@ -45,11 +45,13 @@ vector<int> extract_shortest_path(const vector<int>& distances, const vector<int
         return {};
     vector<int> dijkpath;
     for (int i = destination; i != -1; i = previous[i])
-    {
         dijkpath.push_back(i);
-    }
-    reverse(dijkpath.begin(), dijkpath.end());
-    return dijkpath;
+    
+    vector<int> dijkpath_final(dijkpath.size());
+    int count = 0;
+    for(int i=dijkpath.size()-2; i>=0; --i)
+        dijkpath_final[count++]= dijkpath[i];
+    return dijkpath_final;
 }
 void print_path(const vector<int>& v, int total)
 {
